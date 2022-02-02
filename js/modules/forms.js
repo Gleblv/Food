@@ -1,9 +1,12 @@
-function forms () {
+import {closeModal, openModal} from "./modal";
+import {postData} from "../services/services";
+
+function forms (formSelector, modalTimeID) {
      //Forms
 
-     const forms = document.querySelectorAll("form");
+     const forms = document.querySelectorAll(formSelector);
 
-     message = { // Сообщения для пользователя
+     const message = { // Сообщения для пользователя
          loading: "img/form/spinner.svg", // значок загрузки
          succsess: "Спасибо! Мы ка можно скорее с вами свяжемся",
          fail: "Что-то пошло не так..."
@@ -12,18 +15,6 @@ function forms () {
      forms.forEach(item => {
          bindPostData(item);
      });
- 
-     const postData = async (url, data) => { // оператор async говорит что внутри функции у нас будет какой-то асинхронный код
-         const res = await fetch(url, { // await ставиться перед операциями которых необходимо дождаться
-             method: "POST", //метод
-             headers: { //заголовки
-                 "Content-type": "application/json"
-             },
-             body: data // что мы передаём
-         });
- 
-         return await res.json();
-     };
  
      function bindPostData(form) { // Создаём функцию для отпрвки формы
          form.addEventListener("submit", (event) => { // Когда пользователь отправляет форму
@@ -60,7 +51,7 @@ function forms () {
          const previosModalDilog = document.querySelector(".modal__dialog");
  
          previosModalDilog.classList.add("hide"); // Скрываем контент модального окна
-         openModal();
+         openModal(".modal", modalTimeID);
  
          const thanksModal = document.createElement("div"); // создаём контейнер для нового контента
          thanksModal.classList.add("modal__dialog"); // добавляем контейнер для нового контента
@@ -76,9 +67,9 @@ function forms () {
              thanksModal.remove();
              previosModalDilog.classList.add("show");
              previosModalDilog.classList.remove("hide");
-             closeModal();
+             closeModal(".modal");
          }, 5000)
      }
 }
 
-module.exports = forms;
+export default forms;

@@ -1,8 +1,4 @@
-function timer () {
-
-    //Timer
-
-    const deadline = "2021-12-31"; // Дата окончания
+function timer (id, deadline) {
 
     function getTimeRemaning(endtime) { // Получаем разницу между сегодняшней датой и датой окончания и высчитываем из этой разницы кол-во дней, часов и т.д.
         const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -39,7 +35,7 @@ function timer () {
         updateClock(); // Обновление часов при загрузке или обновлении сайта
 
         function updateClock() { // Обновление часов
-            t = getTimeRemaning(endtime);
+            const t = getTimeRemaning(endtime);
 
             days.innerHTML = getZero(t.days);
             hours.innerHTML = getZero(t.hours);
@@ -52,7 +48,7 @@ function timer () {
         }
     }
 
-    setClock(".timer", deadline);
+    setClock(id, deadline);
 }
 
-module.exports = timer;
+export default timer;

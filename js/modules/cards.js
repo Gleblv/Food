@@ -1,3 +1,5 @@
+import {getResource} from "../services/services";
+
 function cards () {
     // menuCards
 
@@ -43,17 +45,6 @@ function cards () {
         }
     }
 
-    // Функция чтобы получить данные из DataBase
-    const getResource = async (url) => { // оператор async говорит что внутри функции у нас будет какой-то асинхронный код
-        const res = await fetch(url); // await ставиться перед операциями которых необходимо дождаться
-
-        if (!res.ok) { // Если наш запрос не выполняется, то выводим ошибку
-            throw new Error(`Could not fetch ${url}, status ${res.status}`);
-        }
-
-        return await res.json();
-    };
-
     // 1-ый способ добавления карточек с помощью классов (динамический)
     getResource("http://localhost:3000/menu") // Путь откуда ма бурём данные
         .then(data => {
@@ -98,4 +89,4 @@ function cards () {
     // }
 }
 
-module.exports = cards;
+export default cards;

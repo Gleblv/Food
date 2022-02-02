@@ -1,14 +1,14 @@
-function slider () {
+function slider ({container, slide, nextArrow, previosArrow, totalCounter, currentCounter, wrapper, field}) {
         // Slider 
 
-        const sliderContainers = document.querySelectorAll(".offer__slide"),
-        slider = document.querySelector(".offer__slider"),
-        leftSlideBtn = document.querySelector(".offer__slider-prev"),
-        rightSlideBtn = document.querySelector(".offer__slider-next"),
-        leftNumber = document.querySelector("#current"),
-        total = document.querySelector("#total"),
-        slidesWrapper = document.querySelector(".offer__slider-wrapper"), // своеобразное окно через которое будет видно только один элемент
-        slidesField = document.querySelector(".offer__slider-inner"), // контейнер со всеми элементами
+        const sliderContainers = document.querySelectorAll(slide),
+        slider = document.querySelector(container),
+        leftSlideBtn = document.querySelector(previosArrow),
+        rightSlideBtn = document.querySelector(nextArrow),
+        leftNumber = document.querySelector(currentCounter),
+        total = document.querySelector(totalCounter),
+        slidesWrapper = document.querySelector(wrapper), // своеобразное окно через которое будет видно только один элемент
+        slidesField = document.querySelector(field), // контейнер со всеми элементами
         width = window.getComputedStyle(slidesWrapper).width; // ширина окна
 
   let index = 1;
@@ -206,4 +206,4 @@ function slider () {
   // });
 }
 
-module.exports = slider;
+export default slider;

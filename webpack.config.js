@@ -13,5 +13,22 @@ module.exports = { // объект настроек
 
   devtool: "source-map",
 
-  module: {}
+  module: {
+    rules: [ // правила
+      {
+        test: /\.m?js$/, // находим js файлы
+        exclude: /(node_modules|bower_components)/, // что мы должны исключить
+        use: { // как и что используем
+          loader: 'babel-loader', // loader связывет webpack  с babel
+          options: { // опции
+            presets: [['@babel/preset-env', { // пресеты
+                debug: true, // позволяет во время компиляции увидеть какие могут быть проблемы и т.п.
+                corejs: 3, // библиотека которая вулючает полифилы для всего что только можно
+                useBuiltIns: "usage" // позволяет интелектуально выбрать только те полифилы которые нужны
+            }]]
+          }
+        }
+      }
+    ]
+  }
 };
